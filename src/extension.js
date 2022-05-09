@@ -138,7 +138,8 @@ class Extension {
         const windows = activeWorkspace.list_windows().filter(metaWindow => {
             return  metaWindow.showing_on_its_workspace()
                 && !metaWindow.is_hidden()
-                && metaWindow.get_window_type() !== Meta.WindowType.DESKTOP;
+                && metaWindow.get_window_type() !== Meta.WindowType.DESKTOP
+                && (!Meta.is_wayland_compositor() || !metaWindow.skip_taskbar);
         })
 
         var monitors = {};
